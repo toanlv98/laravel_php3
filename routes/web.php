@@ -10,8 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\User;
+use App\Models\Post;
 
-Route::get('/{tenNguoiDung?}', function ($tenNguoiDung= 'giatrimacdinh') {
+
+Route::get('/', function () {
     return view('welcome');
 });
-Route::view('duong-dan', 'welcome');
+Route::get('starter', function () {
+	$users = factory(User::class, 10)
+	->make()
+	->toArray();
+    return view('starter', ['users' => $users]);
+});
+Route::get('post', function () {
+	$posts = factory(Post::class, 10)
+	->make()
+	->toArray();
+    return view('post', ['posts' => $posts]);
+});
